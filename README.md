@@ -116,5 +116,8 @@ The script automatically generates all CSV tables and PNG charts in the working 
 
 ## Author
 
-Project developed for the **Data Science & Mathematics Engineering** program.  
-Supply chain analysis applied to a real footwear retail company in Mexico.
+**Johanna Camila Willis Ruiz** - *Data Science & Mathematics Engineering student*
+
+This project was developed individually for the **"Organizaciones Resilientes"** academic block, within the School of Engineering and Sciences at **Tecnológico de Monterrey**. 
+
+It features a stochastic supply chain risk analysis applied to a real footwear retail company in Mexico.
