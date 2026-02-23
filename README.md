@@ -75,6 +75,7 @@ The root cause of chronic stockouts is not lack of raw capacity — it's **manuf
 ```
 ├── análisis_de_proveedores_monte_carlo_estacional.py      # Full pipeline (Spanish)
 ├── reporte_tecnico_y_estrategico.pdf           # Technical & strategic report (Spanish)
+├── technical_and_strategic_report.pdf          # Technical & strategic report (English)
 ├── anexos/
 │   ├── tablas/
 │   │   ├── tabla_riesgo_proveedores.csv
