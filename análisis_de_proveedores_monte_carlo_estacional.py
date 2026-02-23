@@ -28,7 +28,7 @@ warnings.filterwarnings('ignore')
 
 """## 0. CONFIGURACIÓN GLOBAL"""
 
-ARCHIVO_CSV    = "/content/BD_PROYECTO_RETO.csv"
+ARCHIVO_CSV    = "/content/BDTECSF versión 2(BD).csv"
 N_SIMULACIONES = 10_000
 NIVEL_SERVICIO = 0.95
 FACTOR_NEGADOS = 0.25
@@ -45,12 +45,13 @@ CAP_EXCESO_MULT = 5.0
 
 def cargar_datos(path):
     print("Iniciando ingesta de datos...")
-    df = pd.read_csv(path, sep=None, engine='python')
+    df = pd.read_csv(path, sep=None, engine='python', encoding='latin1')
     df.columns = df.columns.str.strip().str.upper()
     df.rename(columns={'PROVEDOR': 'PROVEEDOR'}, inplace=True)
 
-    df['MES']      = df['MES'].astype(int)
-    df['AÑO']      = df['AÑO'].astype(int)
+    df['FECHA'] = pd.to_datetime(df['FECHA'], dayfirst=True, errors='coerce')
+    df['MES'] = df['FECHA'].dt.month
+    df['AÑO'] = df['FECHA'].dt.year
     df['VENTAS']   = pd.to_numeric(df['VENTAS'],  errors='coerce').fillna(0)
     df['NEGADOS']  = pd.to_numeric(df['NEGADOS'], errors='coerce').fillna(0)
 
@@ -60,6 +61,12 @@ def cargar_datos(path):
     df['FECHA'] = pd.to_datetime(
         df['AÑO'].astype(str) + '-' + df['MES'].astype(str).str.zfill(2) + '-01'
     )
+
+    df = df[
+        (df['NAC/IMP'] == 'NACIONAL') &
+        (df['CATALOGO'] == 'CALZADO') &
+        (df['TIPO'] == 'BOTA')
+    ].copy()
 
     df = df[df['MES'].isin(MESES_VALIDOS)].copy()
 
